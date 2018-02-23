@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.panel{
+    width: 80%;
+    margin: 50px auto;
+}
+td:nth-of-type(1){
+    width: 25%;
+}
+td:nth-of-type(2){
+    width: 25%;
+}
+
+.clickable{
+    cursor: pointer;
+}
+@media (min-width: 768px) and (max-width: 992px){
+    .form-inline .form-control {
+     width: 150px;   
+    }  
+} 
+
+

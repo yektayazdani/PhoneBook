@@ -1,0 +1,68 @@
+<!-- <body [ng-app]="addrBook" [ng-controller]="myCtrl">
+    <div class="container"> -->
+        <div class="panel panel-info">
+            <div class="panel-heading">           
+                <div class="panel-title">
+                <h3 class="text-center">Phone Book</h3>
+                                
+                </div>      
+            </div>
+            <div class="panel-body">
+              <form class="form-horizontal">
+                  <div class="form-group has-info has-feedback">
+                      <label for="seacrh" class="col-sm-2 control-label">Search: </label>
+                      <div class="col-sm-5">
+                          <input type="text"  name="search" ng-model ="test" class="form-control">
+                          <span class="glyphicon glyphicon-search form-control-feedback"></span>                                            
+                      </div>
+                  </div>
+              </form> 
+              <div class="table-responsive">
+                <div class="panel panel-info">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Phone Number</th>
+                        <th>Eamil</th>
+                        <th>Handle</th> 
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let people of contacts" >
+                        <td><span [hidden] = "people.editclicked" >{{people.firstName}}</span><span ><input [(ngModel)]="people.firstName" type="text" [value]=people.firstName class="form-control input-sm" [hidden] = "!people.editclicked"></span></td>
+                        <td><span [hidden] = "people.editclicked" >{{people.lastName}}</span><span ><input [(ngModel)]="people.lastName" type="text" [value]=people.lastName class="form-control input-sm" [hidden] = "!people.editclicked"></span></td>
+                        <td><span [hidden] = "people.editclicked" >{{people.phoneNumber}}</span><span ><input [(ngModel)]="people.phoneNumber" type="text" [value]=people.phoneNumber class="form-control input-sm" [hidden] = "!people.editclicked"></span></td>
+                        <td><span ><i class="fas fa-envelope clickable" (click)="open(people.id)"></i></span></td>
+                        <td><i class="fas fa-trash-alt clickable" (click) = "removeContact(people.id)"></i>&nbsp;&nbsp;<i class="fa-edit clickable " [class.far] = "people.editclicked" [class.fas]= "!people.editclicked" (click)="editStateChanged(people)" ></i></td>
+                          <!-- <input text="text"class="form-control input-sm" ng-model="x.name" ng-show="showMe($index)"></td> -->
+                        <!-- <td><span >{{x.tel}}</span><input text="text" class="form-control input-sm" ng-model="x.tel" ng-show="showMe($index)"></td>
+                        <td><a href="#" ng-click="removeItem()"><span class="glyphicon glyphicon-trash"></span>&nbsp;</a>/<a href="#" ng-click="change()" ng-hide="showMe($index)"> <span class="glyphicon glyphicon-edit"></span></a></a><a href="#" ng-click="save()" ng-show="showMe($index)">&nbsp;<span class="glyphicon glyphicon-ok"></span></a></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                </div>
+              </div>
+
+            </div>
+            <div class="panel-footer">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <span>First Name：</span>
+                        <input type="text" class="form-control"  >
+                    </div>&nbsp;&nbsp;
+                    <div class="form-group">
+                        <span>Last Name：</span>
+                        <input type="text" class="form-control"  >
+                    </div>&nbsp;&nbsp;
+                    <div class="form-group">
+                        <span>Tel：</span>
+                        <input type="text" class="form-control"  >
+                    </div> &nbsp;&nbsp;
+                    <input type="button" class="btn btn-primary btn-sm" value="Add" (click)="addItem()">       
+                </form>            
+            </div>
+            </div>   
+<!-- </div>
+</body> -->
