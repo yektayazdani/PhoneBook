@@ -13,11 +13,17 @@ export class ContactComponent implements OnInit {
   emails;
   editclicked:boolean;
   closeResult: string;
+  newContactFName:string;
+  newContactLName:string;
+  newContactPhone:string;
 
   constructor(private service:ServiceService, private modalService: NgbModal) {
-    this.emails = service.getEmails();
+    //this.emails = service.getEmails();
     let editclicked:false;
     let x:string="test"
+    this.newContactFName = "";
+    this.newContactLName = "";
+    this.newContactPhone = "";
    }
 
   ngOnInit() {
@@ -51,17 +57,24 @@ export class ContactComponent implements OnInit {
 
   addItem()
   {
+    console.log(this.newContactFName,this.newContactLName, this.newContactPhone)
     let body:object = {
-      "firstName" : "",
-      "lastName" : "",
-      "phoneMumber" : ""
+      "firstName" : this.newContactFName,
+      "lastName" : this.newContactLName,
+      "phoneNumber" : this.newContactPhone
     }
+    this.service.addContact(body).subscribe((response)=>{
+      this.newContactFName = "";
+      this.newContactLName = "";
+      this.newContactPhone = "";
+      this.loadAllContacts();
+    })
     
   }
   
   open(contactid) {
     //console.log(contactid, this.emails)
     const modalRef = this.modalService.open(EmailmodalComponent);
-    modalRef.componentInstance.emails = this.emails;
+    modalRef.componentInstance.emails = contactid;
   }
 }

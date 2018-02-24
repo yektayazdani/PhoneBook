@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import{HttpClient} from '@angular/common/http'
+import{HttpClient, HttpHeaders} from '@angular/common/http'
+import { Options } from 'selenium-webdriver/safari';
 @Injectable()
 export class ServiceService {
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
+    })
+  };
   private url = "http://localhost:8083/contacts/"
   constructor(private http: HttpClient) { }
 
@@ -21,7 +27,22 @@ export class ServiceService {
   addContact(body:object){
     return this.http.post(this.url, body)
   }
+
+  getEmails(id){
+    return this.http.get(this.url + id + '/emails/')
+  }
+
+  updateEmail(id, body){
+    return this.http.post(this.url + id + '/emails/', body, this.httpOptions)
+  }
   
+  addEmailid(id, body){
+    return this.http.post(this.url + id + '/emails/', body, this.httpOptions)
+  }
+
+  deleteEmail(id,emailid){
+    return this.http.delete(this.url + id + '/emails/' + emailid, this.httpOptions)
+  }
   oldgetContacts(){
     let contacts:Object = [
     {
@@ -39,7 +60,7 @@ export class ServiceService {
     return contacts;
   }
 
-  getEmails(){
+  oldgetEmails(){
     let emails:object = [
     {
         "id": 5,

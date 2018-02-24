@@ -7,16 +7,14 @@
                                 
                 </div>      
             </div>
-            <div class="panel-body">
-              <form class="form-horizontal">
-                  <div class="form-group has-info has-feedback">
+            <div class="panel-body" class="form-horizontal"> 
+                  <!-- <div class="form-group has-info has-feedback">
                       <label for="seacrh" class="col-sm-2 control-label">Search: </label>
                       <div class="col-sm-5">
                           <input type="text"  name="search" ng-model ="test" class="form-control">
                           <span class="glyphicon glyphicon-search form-control-feedback"></span>                                            
                       </div>
-                  </div>
-              </form> 
+                  </div> -->
               <div class="table-responsive">
                 <div class="panel panel-info">
                 <table class="table table-striped">
@@ -46,22 +44,22 @@
               </div>
 
             </div>
-            <div class="panel-footer">
-                <form class="form-inline">
+            <div class="panel-footer form-inline">
+
                     <div class="form-group">
                         <span>First Name：</span>
-                        <input type="text" class="form-control"  >
-                    </div>&nbsp;&nbsp;
-                    <div class="form-group">
-                        <span>Last Name：</span>
-                        <input type="text" class="form-control"  >
-                    </div>&nbsp;&nbsp;
-                    <div class="form-group">
-                        <span>Tel：</span>
-                        <input type="text" class="form-control"  >
-                    </div> &nbsp;&nbsp;
-                    <input type="button" class="btn btn-primary btn-sm" value="Add" (click)="addItem()">       
-                </form>            
+                        <input class="form-control input-sm" [(ngModel)]="newContactFName" />
+                        </div>&nbsp;&nbsp;
+                        <div class="form-group">
+                            <span>Last Name：</span>
+                            <input class="form-control input-sm" [(ngModel)]="newContactLName" />
+                        </div>&nbsp;&nbsp;
+                        <div class="form-group">
+                            <span>Tel：</span>
+                            <input class="form-control input-sm"  [(ngModel)]="newContactPhone"/>
+                        </div> &nbsp;&nbsp;
+                        <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add Item</button>      
+                            
             </div>
             </div>   
 <!-- </div>
