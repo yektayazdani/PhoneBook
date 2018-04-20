@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { ServiceService } from '../service.service';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-emailmodal',
@@ -23,28 +24,32 @@ export class EmailmodalComponent implements OnInit {
   loadEmails(emailid)
   {
     this.service.getEmails(emailid).subscribe((response)=>{
-      this.allEmails = response;
-      console.log("email fetched")
+      this.allEmails = response["data"];
+      console.log("email fetched", this.allEmails)
     }, (error)=>{console.log(error)})
   }
 
   addEmailId(){
     let emailObject = {
       "emailId": this.newEmailId,
+      "contactId": this.emails
     }
-    this.service.updateEmail(this.emails,emailObject).subscribe((response)=>{
+    this.service.addEmailid(this.emails,emailObject).subscribe(()=>{
       this.loadEmails(this.emails)
     })
+    this.newEmailId = "";
   }
 
   deleteEmailId(id){
-    this.service.deleteEmail(this.emails, id).subscribe((response)=>{this.loadEmails(this.emails)})
+    this.service.deleteEmail(this.emails, id).subscribe(()=>{this.loadEmails(this.emails)})
   }
   editStateChanged(index)
   {
+    console.log(index)
     let emailObject = {
       "emailId": index.emailId,
-      "id":index.id
+      "id":index.id,
+      "contactId":index.contactId
     }
     if(index.editclicked){
       index.editclicked = false;

@@ -14,8 +14,11 @@
       </thead>
       <tbody>
         <tr *ngFor = "let email of allEmails">
-          <td><span [hidden]="email.editclicked"> {{email.emailId}}</span><span [hidden]="!email.editclicked"><input type="text"  class="form-control input-sm"  [(ngModel)]="email.emailId" [value]="email.emailId"></span></td>
-          <td><i class="fas fa-trash-alt clickable" (click)="deleteEmailId(email.id)"></i>&nbsp;&nbsp;<i class="fa-edit clickable " [class.far] = "email.editclicked" [class.fas]= "!email.editclicked" (click)="editStateChanged(email)" ></i></td>
+          <td><span [hidden]="email.editclicked"> {{email.emailId}}</span><span [hidden]="!email.editclicked"><input type="text"  class="form-control input-sm"  [(ngModel)]="email.emailId" [value]="email.emailId" ></span></td>
+          <td>
+            <i class="fas fa-trash-alt clickable" (click)="deleteEmailId(email.id)"></i>&nbsp;&nbsp;
+            <i class="fa-edit clickable " [class.far] = "email.editclicked" [class.fas]= "!email.editclicked" (click)="editStateChanged(email)" ></i>
+          </td>
         </tr>
       </tbody>
       </table>

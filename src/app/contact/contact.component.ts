@@ -33,14 +33,23 @@ export class ContactComponent implements OnInit {
   loadAllContacts()
   {
     this.service.getContacts()
-      .subscribe((response) => {this.contacts = response; console.log(this.contacts)}, (error)=> {console.log(error)})
+      .subscribe((response) => {
+                                this.contacts = response["data"]; 
+                                console.log(this.contacts)
+                                }, (error)=> {console.log(error)})
   }
 
   editStateChanged(index)
   {
     if(index.editclicked){
       index.editclicked = false;
-      this.service.updateContact(index).subscribe(response => {
+      let body:object = {
+        "id":index.id,
+        "firstName":index.firstName,
+        "lastName":index.lastName,
+        "phoneNumber":index.phoneNumber
+      }
+      this.service.updateContact(body).subscribe(response => {
       }, error => {console.log(error)})
     }
     else{
@@ -73,7 +82,6 @@ export class ContactComponent implements OnInit {
   }
   
   open(contactid) {
-    //console.log(contactid, this.emails)
     const modalRef = this.modalService.open(EmailmodalComponent);
     modalRef.componentInstance.emails = contactid;
   }

@@ -1,27 +1,34 @@
 import { Injectable } from '@angular/core';
 import{HttpClient, HttpHeaders} from '@angular/common/http'
 import { Options } from 'selenium-webdriver/safari';
+import { headersToString } from 'selenium-webdriver/http';
 @Injectable()
 export class ServiceService {
 
   httpOptions = {
-    headers: new HttpHeaders({
-      'Access-Control-Allow-Origin': 'http://localhost:4200'
-    })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
-  private url = "http://localhost:8083/contacts/"
+
+  private urlSp = "http://localhost:8083/contacts/"
+  private url = "http://127.0.0.1:3000/api/v1/contacts"
+
+
   constructor(private http: HttpClient) { }
 
   getContacts(){
     return this.http.get(this.url)
   }
 
+  // updateContact(body:object){
+  //   return this.http.post(this.url, body)
+  // }
+
   updateContact(body:object){
-    return this.http.post(this.url, body)
+    return this.http.put(this.url, body)
   }
   
   deleteContact(id){
-    return this.http.delete(this.url + id)
+    return this.http.delete(this.url + "/" + id)
   }
 
   addContact(body:object){
@@ -29,19 +36,20 @@ export class ServiceService {
   }
 
   getEmails(id){
-    return this.http.get(this.url + id + '/emails/')
+    return this.http.get(this.url + "/" + id + '/emails')
   }
 
   updateEmail(id, body){
-    return this.http.post(this.url + id + '/emails/', body, this.httpOptions)
+    debugger
+    return this.http.put(this.url + "/" + id + '/emails', body)
   }
   
   addEmailid(id, body){
-    return this.http.post(this.url + id + '/emails/', body, this.httpOptions)
+    return this.http.post(this.url + "/" + id + '/emails', body)
   }
 
   deleteEmail(id,emailid){
-    return this.http.delete(this.url + id + '/emails/' + emailid, this.httpOptions)
+    return this.http.delete(this.url + "/" + id + '/emails/' + emailid)
   }
   oldgetContacts(){
     let contacts:Object = [
